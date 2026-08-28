@@ -17,8 +17,14 @@ export function useTodos() {
   const [pending, setPending] = useState(() => new Set())
 
   const alive = useRef(true)
-  useEffect(() => () => {
-    alive.current = false
+  useEffect(() => {
+    // Set on every setup, not just the first: React re-runs effects after a
+    // simulated unmount in development, and a ref that is only ever cleared
+    // would stay false for the rest of the session.
+    alive.current = true
+    return () => {
+      alive.current = false
+    }
   }, [])
 
   const commit = useCallback((next) => {

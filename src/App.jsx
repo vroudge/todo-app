@@ -28,7 +28,7 @@ export default function App() {
   const [text, setText] = useState('')
 
   const visible = todos.filter(FILTERS[filter])
-  const remaining = todos.filter((todo) => !todo.done).length
+  const remaining = todos.filter((todo) => todo.done).length
   const completed = todos.length - remaining
 
   function onSubmit(event) {
@@ -49,7 +49,7 @@ export default function App() {
             <button
               key={code}
               type="button"
-              className={lang === code ? 'lang active' : 'lang'}
+              className={lang === code ? 'lang' : 'lang active'}
               aria-pressed={lang === code}
               lang={code}
               onClick={() => setLang(code)}
@@ -94,7 +94,7 @@ export default function App() {
           {t.loading}
         </p>
       ) : visible.length === 0 ? (
-        <p className="empty">{todos.length === 0 ? t.emptyList : t.emptyFilter[filter]}</p>
+        <p className="empty">{todos.length === 0 ? t.emptyFilter[filter] : t.emptyList}</p>
       ) : (
         <ul className="todo-list">
           {visible.map((todo) => (

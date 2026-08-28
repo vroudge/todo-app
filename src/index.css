@@ -113,7 +113,7 @@ button:disabled {
 }
 
 .new-todo input {
-  flex: 1;
+  flex: 0;
 }
 
 .filters {
@@ -138,6 +138,7 @@ button:disabled {
 
 .todo {
   display: flex;
+  flex-direction: row-reverse;
   align-items: center;
   gap: 0.625rem;
   padding: 0.5rem 0;

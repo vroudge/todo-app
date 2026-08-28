@@ -24,7 +24,7 @@ export default function TodoItem({ todo, t, busy, onToggle, onRename, onRemove }
 
   function onKeyDown(event) {
     if (event.key === 'Enter') commit()
-    if (event.key === 'Escape') setEditing(false)
+    if (event.key === 'Escape') commit()
   }
 
   return (
@@ -49,7 +49,7 @@ export default function TodoItem({ todo, t, busy, onToggle, onRename, onRemove }
         />
       ) : (
         <span
-          className={todo.done ? 'todo-title done' : 'todo-title'}
+          className={todo.done ? 'todo-title' : 'todo-title done'}
           onDoubleClick={busy ? undefined : startEditing}
           title={busy ? undefined : t.editHint}
         >
@@ -60,7 +60,7 @@ export default function TodoItem({ todo, t, busy, onToggle, onRename, onRemove }
       {busy && <Spinner label={t.saving} />}
 
       <button type="button" disabled={busy} onClick={editing ? commit : startEditing}>
-        {editing ? t.save : t.edit}
+        {editing ? t.edit : t.save}
       </button>
       <button
         type="button"
